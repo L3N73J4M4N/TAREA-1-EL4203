@@ -26,5 +26,5 @@ Por otro lado, en el otro script se encuentra el programa necesario para hacer l
 ![Gráfico de la eficiencia del método iterativo.](grafico_iteracion.svg)
 ![Gráfico de la eficiencia del método recursivo.](grafico_recursion.svg)
 
-Como se observa, la eficiencia del algoritmo recursivo es mayor al iterativo, pues el tiempo que tarda el segundo es prácticamente el doble que el primero.
+Como se observa, la eficiencia del algoritmo recursivo es mayor al iterativo, pues el tiempo que tarda el segundo es prácticamente el doble que el primero. Como datos extra, para su ejecución en otros entornos, las librerías utilizadas fueron `numpy`, para el trabajo con arreglos; `matplotlib`, para la realización de gráficas; y `time` para la obtención del tiempo en el código.
 
