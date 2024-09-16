@@ -2,7 +2,8 @@ from caminos import Caminos
 import matplotlib.pyplot as plt
 
 # obtención de datos para la gráfica
-dims = range(2, 6)
+N0, Nf = 7, 11
+dims = range(N0, Nf)
 x, it, rec = [], [], []
 for d1 in dims:
     for d2 in dims:
@@ -10,9 +11,9 @@ for d1 in dims:
         it.append(Caminos(d1, d2).num_roads(True))
         rec.append(Caminos(d1, d2).num_roads(False))
 
-max_time = max(max(rec), max(it)) + 30
+max_time = max(max(rec), max(it)) + 10
 # gráfico de ambos algoritmos
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 6))
 plt.bar(x, it, color='coral', label='Iteración')
 plt.bar(x, rec, color='royalblue', label='Recursión')
 plt.ylim([0, max_time])
@@ -24,7 +25,7 @@ plt.savefig('grafico_ambos_algoritmos.svg')
 plt.show()
 
 # gráfico de algoritmo iterativo
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 6))
 plt.bar(x, it, color='coral')
 plt.ylabel('tiempo [ms]')
 plt.ylim([0, max_time])
@@ -34,7 +35,7 @@ plt.savefig('grafico_iteracion.svg')
 plt.show()
 
 # gráfico de algoritmo recursivo
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 6))
 plt.bar(x, rec, color='royalblue')
 plt.ylabel('tiempo [ms]')
 plt.ylim([0, max_time])

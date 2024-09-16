@@ -9,7 +9,7 @@ def decorator(func):
         t0 = time()
         func(self, *args)
         tf = time()
-        return 1000 * (tf - t0)
+        return (tf - t0) * 1000
     return get_time
 
 
@@ -41,15 +41,15 @@ class Caminos:
                 # vamos a la derecha
                 if [i + 1, j] not in visited and i + 1 < self.n:
                     road([i + 1, j], visited.copy())
-                # vamos a la izquierda
-                if [i - 1, j] not in visited and i - 1 >= 0:
-                    road([i - 1, j], visited.copy())
+                # # vamos a la izquierda
+                # if [i - 1, j] not in visited and i - 1 >= 0:
+                #     road([i - 1, j], visited.copy())
                 # vamos hacia abajo
                 if [i, j + 1] not in visited and j + 1 < self.m:
                     road([i, j + 1], visited.copy())
-                # vamos hacia arriba
-                if [i, j - 1] not in visited and j - 1 >= 0:
-                    road([i, j - 1], visited.copy())
+                # # vamos hacia arriba
+                # if [i, j - 1] not in visited and j - 1 >= 0:
+                #     road([i, j - 1], visited.copy())
 
         road(self.A, [])  # partimos de A y no hemos pasado por ningún punto
         return self.roads
@@ -67,31 +67,31 @@ class Caminos:
             # vamos a la derecha
             if [i + 1, j] not in visited and i + 1 < self.n:
                 states.append([[i + 1, j], visited + [[i + 1, j]]])
-            # vamos a la izquierda
-            if [i - 1, j] not in visited and i - 1 >= 0:
-                states.append([[i - 1, j], visited + [[i - 1, j]]])
+            # # vamos a la izquierda
+            # if [i - 1, j] not in visited and i - 1 >= 0:
+            #     states.append([[i - 1, j], visited + [[i - 1, j]]])
             # vamos hacia abajo
             if [i, j + 1] not in visited and j + 1 < self.m:
                 states.append([[i, j + 1], visited + [[i, j + 1]]])
-            # vamos hacia arriba
-            if [i, j - 1] not in visited and j - 1 >= 0:
-                states.append([[i, j - 1], visited + [[i, j - 1]]])
+            # # vamos hacia arriba
+            # if [i, j - 1] not in visited and j - 1 >= 0:
+            #     states.append([[i, j - 1], visited + [[i, j - 1]]])
         return self.roads
 
     # retorna el número de caminos que tiene la clase a través
     # del algoritmo iterativo en caso de True. En cambio,
     # si fuera False, utiliza el algoritmo recursivo
     @ decorator
-    def num_roads(self, iterative):
+    def num_roads(self, iterative: bool):
         return self.iterative() if iterative is True else self.recursive()
 
 
 if __name__ == '__main__':
     # verificamos casos simples
-    assert Caminos(3, 3).recursive() == Caminos(3, 3).iterative() == 12
+    assert Caminos(3, 3).recursive() == Caminos(3, 3).iterative() == 6
     assert Caminos(2, 2).recursive() == Caminos(2, 2).iterative() == 2
     # verificamos que es conmutativo
-    assert Caminos(3, 2).iterative() == Caminos(2, 3).recursive() == 4
-    assert Caminos(2, 3).iterative() == Caminos(3, 2).recursive() == 4
+    assert Caminos(3, 2).iterative() == Caminos(2, 3).recursive() == 3
+    assert Caminos(2, 3).iterative() == Caminos(3, 2).recursive() == 3
     # verificamos un caso complejo
     assert Caminos(5, 5).iterative() == Caminos(5, 5).recursive()
